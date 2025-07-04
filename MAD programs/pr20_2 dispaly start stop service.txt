@@ -1,0 +1,98 @@
+//dispaly start stop service pr20_2
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Service"
+        android:onClick="start"/>
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Service"
+        android:layout_below="@+id/btnStart"
+        android:onClick="stop"/>
+
+</RelativeLayout>
+
+//java
+
+package com.example.pr20_2;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void start(View view) {
+        startService(new Intent(getApplicationContext(),MyService1.class));
+    }
+    public void stop(View view) {
+        stopService(new Intent(getApplicationContext(),MyService1.class));
+    }
+}
+
+//MyService
+
+package com.example.pr20_2;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.widget.Toast;
+public class MyService1 extends Service {
+    Toast t;
+    public MyService1() {
+    }
+    public IBinder onBind(Intent intent) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+    public void onCreate(){}
+    public void onStart(Intent i, int Startid){
+        t = Toast.makeText(getApplicationContext(),"Service is Started",Toast.LENGTH_SHORT);
+        t.show();
+    }
+    public void onDestroy(){
+        t = Toast.makeText(getApplicationContext(),"Service is Stopped",Toast.LENGTH_SHORT);
+        t.show();
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.pr20_2">
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Pr20_2"
+        tools:targetApi="31">
+        <service
+            android:name=".MyService1"
+            android:enabled="true"
+             />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+         >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

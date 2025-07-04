@@ -1,0 +1,154 @@
+//login  form with validations pr28
+
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="76dp"
+        android:layout_y="150dp"
+        android:text="Username:" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="76dp"
+        android:layout_y="205dp"
+        android:text="Password:" />
+
+    <EditText
+        android:id="@+id/usernameET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="172dp"
+        android:layout_y="129dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="172dp"
+        android:layout_y="187dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+
+    <TextView
+        android:id="@+id/attemptsLeftTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="92dp"
+        android:layout_y="257dp"
+        android:text="Attempts Left:" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="151dp"
+        android:layout_y="326dp"
+        android:onClick="authenticateLogin"
+        android:text="Login" />
+
+    <TextView
+        android:id="@+id/nTV"
+        android:layout_width="72dp"
+        android:layout_height="39dp"
+        android:layout_x="217dp"
+        android:layout_y="256dp" />
+
+    <TextView
+        android:id="@+id/loginLockedTV"
+        android:layout_width="203dp"
+        android:layout_height="33dp"
+        android:layout_x="106dp"
+        android:layout_y="418dp"
+        />
+</AbsoluteLayout>
+
+package com.example.pr28;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.view.View;
+import android.widget.*;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+    private EditText username;
+    private EditText password;
+    private Button login;
+    private TextView loginLockedTV;
+    private TextView attemptsLeftTV;
+    private TextView nTV;
+    int nA = 3;
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        username = (EditText) findViewById(R.id.usernameET);
+        password = (EditText) findViewById(R.id.passwordET);
+        login = (Button) findViewById(R.id.loginBtn);
+        loginLockedTV = (TextView) findViewById(R.id.loginLockedTV);
+        attemptsLeftTV = (TextView) findViewById(R.id.attemptsLeftTV);
+        nTV = (TextView)
+                findViewById(R.id.nTV);
+        nTV.setText(Integer.toString(nA));
+    }
+    public void authenticateLogin(View view) {
+        if (username.getText().toString().equals("admin") &&
+                password.getText().toString().equals("admin")) {
+            Toast.makeText(getApplicationContext(), "Login Successful!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Login Unsuccessful!",
+                    Toast.LENGTH_SHORT).show();
+            nA--;
+            attemptsLeftTV.setVisibility(View.VISIBLE);
+            nTV.setVisibility(View.VISIBLE);
+            nTV.setText(Integer.toString(nA));
+            if (nA == 0) {
+                login.setEnabled(false);
+                loginLockedTV.setVisibility(View.VISIBLE);
+                loginLockedTV.setBackgroundColor(Color.RED);
+                loginLockedTV.setText("LOGIN LOCKED!!!");
+            }
+        }
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Pr28"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

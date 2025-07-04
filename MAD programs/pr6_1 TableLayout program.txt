@@ -1,0 +1,254 @@
+//TableLayout program pr6_1
+
+//xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/rn"
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="Roll No"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/nm"
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Name"
+            android:textSize="24dp" />
+        <TextView
+            android:id="@+id/mk"
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="Marks"
+            android:textSize="24dp" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_column="1"
+            android:text="2201"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_column="2"
+            android:text="Tejas"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_column="3"
+            android:text="78"
+            android:textSize="24dp" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2202"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Abhi"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="58.50"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2203"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Amruta"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="88.70"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2204"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Aditya"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="79.88"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2205"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Yash"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="85.60"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2206"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Sahil"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="59.88"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2207"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Jay"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="89.88"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2208"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Suraj"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="77.88"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2209"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Atharv"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="91.55"
+            android:textSize="24dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_column="1"
+            android:text="2210"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="162dp"
+            android:layout_column="2"
+            android:text="Ashish"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_width="153dp"
+            android:layout_column="3"
+            android:text="90.60"
+            android:textSize="24dp" />
+    </TableRow>
+
+</TableLayout>
+
+//java file
+
+package com.example.pr6_1;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}

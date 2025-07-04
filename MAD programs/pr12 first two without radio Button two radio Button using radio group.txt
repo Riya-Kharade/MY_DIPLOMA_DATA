@@ -1,0 +1,123 @@
+//first two without radio Button two radio Button using radio group pr12
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Single Radio Button"
+        android:textSize="20sp" />
+    <RadioButton
+        android:id="@+id/radio1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Radio Button 1"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+    <RadioButton
+        android:id="@+id/radio2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Radio Button 2"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Radio button inside RadioGroup"
+        android:textSize="20sp" />
+    <RadioGroup android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showMsg"
+        android:text="Show Selected" />
+</LinearLayout>
+
+package com.example.pr12;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+public class MainActivity extends AppCompatActivity {
+    RadioButton r1, r2, rMale, rFemale;
+    RadioGroup rGroup;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        r1 = findViewById(R.id.radio1);
+        r2 = findViewById(R.id.radio2);
+        rMale = findViewById(R.id.radioMale);
+        rFemale = findViewById(R.id.radioFemale);
+        rGroup = findViewById(R.id.radioGroup);
+    }
+    public void showMsg(View view) {
+        String str = "Selected radio buttons:\n";
+        if(r1.isChecked())
+            str += "Radio Button 1\n";
+        if(r2.isChecked())
+            str += "Radio Button 2\n";
+        RadioButton sRadio = findViewById(rGroup.getCheckedRadioButtonId());
+        str += sRadio.getText().toString();
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Pr12"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+

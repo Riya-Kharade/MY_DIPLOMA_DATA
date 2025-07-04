@@ -1,0 +1,129 @@
+//program to turn on off get visile list devices Bluetooth pr24_1
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="20dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn On"
+        android:onClick="turnOn"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Visible"
+        android:onClick="getVisible"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Devices"
+        android:onClick="listDevices"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn Off"
+        android:onClick="turnOff"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paired Devices"
+        android:textColor="@android:color/holo_red_dark"/>
+    <ListView android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+package com.example.pr24;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.Set;
+public class MainActivity extends Activity {
+    private BluetoothAdapter mBluetoothAdapter;
+    private Set<BluetoothDevice> mPairedDevices;
+    private ListView mListView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mListView = findViewById(R.id.listView);
+    }
+    @SuppressLint("MissingPermission")
+    public void turnOn(View view) {
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(getApplicationContext(), "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
+        } else {
+            if (!mBluetoothAdapter.isEnabled()) {
+                Intent intentOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(intentOn, 0);
+                Toast.makeText(getApplicationContext(), "Bluetooth turned on", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Bluetooth is already on", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    @SuppressLint("MissingPermission")
+    public void turnOff(View view) {
+        mBluetoothAdapter.disable();
+        Toast.makeText(getApplicationContext(), "Bluetooth turned off", Toast.LENGTH_SHORT).show();
+    }
+    @SuppressLint("MissingPermission")
+    public void getVisible(View view) {
+        Intent intentVisible = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        startActivityForResult(intentVisible, 0);
+    }
+    @SuppressLint("MissingPermission")
+    public void listDevices(View view) {
+        mPairedDevices = mBluetoothAdapter.getBondedDevices();
+        ArrayList<String> list = new ArrayList<>();
+
+        for(BluetoothDevice device : mPairedDevices) {
+            list.add(device.getName() + "\n" + device.getAddress());
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        mListView.setAdapter(adapter);
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.pr24">
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        >
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

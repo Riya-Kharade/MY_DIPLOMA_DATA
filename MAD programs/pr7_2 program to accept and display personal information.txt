@@ -1,0 +1,99 @@
+//program to accept and display personal information pr7_2
+
+//xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editText_na"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:text="Enter Name" />
+
+    <EditText
+        android:id="@+id/editText_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PIN Code" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/t_na"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/t_code"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="TextView" />
+</LinearLayout>
+
+//java
+
+package com.example.pr7_2;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+public class MainActivity extends AppCompatActivity {
+    Button b;
+    TextView t1,t2;
+    EditText e1,e2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e1=findViewById(R.id.editText_na);
+        e2=findViewById(R.id.editText_code);
+        t1=findViewById(R.id.t_na);
+        t2=findViewById(R.id.t_code);
+        b=(Button)findViewById(R.id.btn);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.setText(e1.getText().toString());
+                t2.setText(e2.getText().toString());
+            }
+        });
+    }
+}
+
+//manifest
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.PR7_2"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,65 @@
+//start a Wi-Fi using service pr20_1
+
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="167dp"
+        android:layout_y="288dp"
+        android:text="Button"
+        android:onClick="changeWifi"/>
+</AbsoluteLayout
+
+package com.example.pr20_1;
+import androidx.appcompat.app.AppCompatActivity;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.view.View;
+public class MainActivity extends AppCompatActivity {
+    WifiManager wifi;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        wifi = (WifiManager) getSystemService(getApplicationContext().WIFI_SERVICE);
+    }
+    public void changeWifi(View view) {
+        if(wifi.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
+            wifi.setWifiEnabled(false);
+        else
+            wifi.setWifiEnabled(true);
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.pr20_1">
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Pr20_1"
+        tools:targetApi="31"
+        >
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

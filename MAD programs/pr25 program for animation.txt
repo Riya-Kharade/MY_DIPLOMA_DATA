@@ -1,0 +1,150 @@
+//program for animation pr25
+
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/fo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="206dp"
+        android:layout_y="583dp"
+        android:text="fade out" />
+
+    <Button
+        android:id="@+id/zi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="27dp"
+        android:layout_y="456dp"
+        android:text="zoom in" />
+
+    <Button
+        android:id="@+id/zo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="203dp"
+        android:layout_y="456dp"
+        android:text="zoom out" />
+
+    <Button
+        android:id="@+id/c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="28dp"
+        android:layout_y="518dp"
+        android:text="clockwise" />
+
+    <Button
+        android:id="@+id/ac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="207dp"
+        android:layout_y="518dp"
+        android:text="Anti clockwise" />
+
+    <Button
+        android:id="@+id/fi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="27dp"
+        android:layout_y="587dp"
+        android:text="fade in" />
+    <ImageView
+        android:layout_width="304dp"
+        android:layout_height="317dp"
+        android:id="@+id/iv"
+        android:layout_x="44dp"
+        android:layout_y="85dp"
+        android:src="@drawable/ashish"/>
+
+</AbsoluteLayout>
+
+package com.example.pr25_new;
+import androidx.appcompat.app.AppCompatActivity;
+import android.view.*;
+import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.*;
+public class MainActivity extends AppCompatActivity {
+    Button zi,zo,fi,fo,rc,ra;
+    ImageView iv;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        zi=findViewById(R.id.zi);
+        zo=findViewById(R.id.zo);
+        fi=findViewById(R.id.fi);
+        fo=findViewById(R.id.fo);
+        rc=findViewById(R.id.c);
+        ra=findViewById(R.id.ac);
+        iv=findViewById(R.id.iv);
+        zi.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                iv.setScaleX(iv.getScaleX()+(float)0.1);
+                iv.setScaleY(iv.getScaleY()+(float)0.1);
+            }
+        });
+        zo.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                iv.setScaleX(iv.getScaleX()-(float)0.1);
+                iv.setScaleY(iv.getScaleY()-(float)0.1);
+            }
+        });
+        rc.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                iv.setRotation((float)iv.getRotation()+90);
+            }
+        });
+        ra.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                iv.setRotation((float)iv.getRotation()-90);
+            }
+        });
+        fi.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Animation afi= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+                iv.startAnimation(afi);
+            }
+        });
+        fo.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Animation afo= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
+                iv.startAnimation(afo);
+            }
+        });
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Pr25_new"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
